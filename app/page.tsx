@@ -1,4 +1,5 @@
 import Stripe from 'stripe';
+import Product from './components/Product';
 
 const getProducts = async () => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -81,7 +82,8 @@ export default async function Home() {
   // ]
   return (
     <main>
-
+      {/* pass product properties to product component via props */}
+      {products.map(product => <Product {...product} />)}
     </main>
   );
 }
