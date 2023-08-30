@@ -8,10 +8,12 @@ export default function Product({
     price
 }: ProductType) {
     return (
-        <div>
-            <Image src={image} alt={name} width={300} height={600} />
-            <h1>{name}</h1>
-            <p>{price ? formatPrice(price) : 'N/A'}</p>
+        <div className='text-gray-700'>
+            <Image src={image} alt={name} width={600} height={900} className='rounded-lg' />
+            <div className='font-medium py-2'>
+                <h1>{name}</h1>
+                <h2 className='text-sm text-teal-700'>{price ? formatPrice(price) : 'Price unavailable'}</h2>
+            </div>
         </div>
     );
 }
