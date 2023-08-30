@@ -6,7 +6,14 @@ module.exports = {
 		"./components/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			gridTemplateColumns: {
+				// autofits products in a grid
+				// when product < 15 rem,
+				// display on individual rows (1fr)
+				fluid: 'repeat(auto-fit, minmax(15rem, 1fr))',
+			}
+		},
 	},
 	plugins: [],
 }
