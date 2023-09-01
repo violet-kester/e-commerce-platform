@@ -1,7 +1,13 @@
 export type ProductType = {
+  id: string,
   name: string,
   image: string,
-  price: number | null,
   description: string | null,
-  id: string,
+  unit_amount: number | null,
+  quantity?: number | 1,
+  metadata: MetadataType,
+}
+
+type MetadataType = {
+  features: string,
 }
