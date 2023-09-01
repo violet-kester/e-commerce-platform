@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import formatPrice from '@/util/PriceFormat';
 import { SearchParamsType } from '@/types/SearchParamsType';
 
 export default async function Product({ searchParams }: SearchParamsType) {
@@ -12,10 +13,19 @@ export default async function Product({ searchParams }: SearchParamsType) {
                 height={900}
                 className='rounded-lg'
             />
-            <div>
-                <h1>{searchParams.name}</h1>
-                <p>{searchParams.description}</p>
+            <div className='font-medium text-gray-700'>
+                <h1 className='text-2xl py-2'>{searchParams.name}</h1>
+                <p className='py-2'>{searchParams.description}</p>
+                <p className='py-2 italic'>Features: {searchParams.features}</p>
+                <p className='font-bold text-teal-700'>
+                    {searchParams.unit_amount && formatPrice(searchParams.unit_amount)}
+                </p>
+                <div>
+                    <button className='my-12 px-6 py-2 text-white rounded-md bg-teal-700'>
+                        Add to cart
+                    </button>
+                </div>
             </div>
         </div>
     );
-}
+};
