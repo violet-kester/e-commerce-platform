@@ -46,6 +46,7 @@ const getProducts = async () => {
         id: product.id,
         name: product.name,
         price: prices.data[0].unit_amount,
+        description: product.description,
         image: product.images[0],
         currency: prices.data[0].currency
       };
@@ -62,21 +63,24 @@ export default async function Home() {
   //     id: 'prod_OXFrVE1QwzF85H',
   //     name: 'Bold Kaftan',
   //     price: 15000,
-  //     image: 'https://files.stripe.com/links/MDB8YWN...',
+  //     description: 'Add some color to your wardrobe...',
+  //     image: 'https://files.stripe.com/links...',
   //     currency: 'usd'
   //   },
   //   {
   //     id: 'prod_OXFqIxgYSaNxJl',
   //     name: 'Concentric Kaftan',
   //     price: 14000,
-  //     image: 'https://files.stripe.com/links/MDB8YWN...',
+  //     description: 'This classic kaftan is a...',
+  //     image: 'https://files.stripe.com/links...',
   //     currency: 'usd'
   //   },
   //   {
   //     id: 'prod_OXFpT49jHkxmgz',
   //     name: 'Striped Kaftan',
   //     price: 12000,
-  //     image: 'https://files.stripe.com/links/MDB8YWN...',
+  //     description: 'This chic kaftan is perfect...',
+  //     image: 'https://files.stripe.com/links...',
   //     currency: 'usd'
   //   }
   // ]
