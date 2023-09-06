@@ -8,6 +8,19 @@ import Cart from './Cart';
 import { useCartStore } from '../store';
 import { AiFillShopping } from 'react-icons/ai';
 
+/** Nav (component)
+ *
+ * Navigation bar with the app logo, a shopping cart icon, and a sign-in button.
+ * Allows the user to access the home page, toggle the cart panel, and sign in or out.
+ *
+ * - Uses the useCartStore hook to access and update the cart state.
+ * - Uses the signIn and signOut functions from NextAuth to handle authentication.
+ * - Displays the number of products in the cart on the shopping cart icon.
+ * - Displays the user’s image if signed in.
+ *
+ * @param {Session} user - user object from NextAuth (contains name, email, image).
+ */
+
 export default function Nav({ user }: Session) {
     const cartStore = useCartStore();
 
@@ -18,6 +31,7 @@ export default function Nav({ user }: Session) {
                 <h1>E-commerce Platform</h1>
             </Link>
             <ul className='flex items-center gap-12'>
+
                 {/* toggle cart */}
                 <li onClick={() => cartStore.toggleCart()} className='flex items-center text-3xl relative cursor-pointer'>
                     <AiFillShopping />
@@ -25,12 +39,14 @@ export default function Nav({ user }: Session) {
                         {cartStore.cart.length}
                     </span>
                 </li>
+
                 {/* if user is not signed in */}
                 {!user && (
                     <li className='bg-teal-600 text-white py-2 px-4 rounded-md'>
                         <button onClick={() => signIn()}>Sign in</button>
                     </li>
                 )}
+
                 {/* if user is signed in */}
                 {user && (
                     <>
@@ -48,6 +64,7 @@ export default function Nav({ user }: Session) {
                         </li> */}
                     </>
                 )}
+
             </ul>
             {cartStore.isOpen && <Cart />}
         </nav >
