@@ -5,6 +5,7 @@ import { useCartStore } from '../store';
 import formatPrice from '@/util/PriceFormat';
 import { IoAddCircle, IoRemoveCircle } from 'react-icons/io5';
 import shoppingCart from '@/public/shopping-cart.png';
+import { motion } from 'framer-motion';
 
 /** Cart (component)
  *
@@ -26,7 +27,10 @@ export default function Cart() {
     }, 0);
 
     return (
-        <div
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={() => cartStore.toggleCart()} // closes cart when dimmed bg is clicked
             className='fixed w-full h-screen left-0 top-0 bg-black/25'
         >
@@ -94,6 +98,6 @@ export default function Cart() {
                 }
             </div>
 
-        </div>
+        </motion.div>
     );
 }
