@@ -19,12 +19,19 @@ import shoppingCart from '@/public/shopping-cart.png';
 
 export default function Cart() {
     const cartStore = useCartStore();
+
+    // total price
+    const totalPrice = cartStore.cart.reduce((acc, item) => {
+        return acc + item.unit_amount! * item.quantity!;
+    }, 0);
+
     return (
-        <div // dimmed bg
+        <div
             onClick={() => cartStore.toggleCart()} // closes cart when dimmed bg is clicked
             className='fixed w-full h-screen left-0 top-0 bg-black/25'
         >
-            <div // cart items panel
+            {/* shopping cart panel */}
+            <div
                 onClick={(e) => e.stopPropagation()} // prevents cart from closing when panel is clicked
                 className='bg-white absolute right-0 top-0 w-1/4 h-screen p-12 overflow-y-scroll text-gray-700'>
                 <h1>Here's your shopping list.</h1>
@@ -67,12 +74,17 @@ export default function Cart() {
                         </div>
                     </div>
                 ))}
-                {/* checkout button */}
+
+                {/* total and checkout button */}
                 {cartStore.cart.length > 0 &&
-                    <button className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'>
-                        Checkout
-                    </button>
+                    <div>
+                        <p>Total: {formatPrice(totalPrice)}</p>
+                        <button className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'>
+                            Checkout
+                        </button>
+                    </div>
                 }
+
                 {/* empty basket */}
                 {!cartStore.cart.length &&
                     <div className='flex flex-col items-center gap-12 text-2xl font-medium pt-56 opacity-50'>
