@@ -35,19 +35,20 @@ export default function Cart() {
             className='fixed w-full h-screen left-0 top-0 bg-black/25'
         >
             {/* shopping cart panel */}
-            <div
+            <motion.div
+                layout
                 onClick={(e) => e.stopPropagation()} // prevents cart from closing when panel is clicked
                 className='bg-white absolute right-0 top-0 w-1/4 h-screen p-12 overflow-y-scroll text-gray-700'>
                 <h1>Here's your shopping list.</h1>
                 {cartStore.cart.map((item) => (
-                    <div className="flex py-4 gap-4">
+                    <motion.div layout key={item.id} className="flex py-4 gap-4">
                         <Image
                             className='rounded-md'
                             src={item.image}
                             alt={item.name}
                             width={120}
                             height={120} />
-                        <div>
+                        <motion.div layout>
                             <h2>{item.name}</h2>
                             <div className='flex gap-2'>
                                 <h2>Quantity: {item.quantity}</h2>
@@ -75,18 +76,18 @@ export default function Cart() {
                             <p className="text-sm">
                                 {item.unit_amount && formatPrice(item.unit_amount)}
                             </p>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 ))}
 
                 {/* total and checkout button */}
                 {cartStore.cart.length > 0 &&
-                    <div>
+                    <motion.div layout>
                         <p>Total: {formatPrice(totalPrice)}</p>
                         <button className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'>
                             Checkout
                         </button>
-                    </div>
+                    </motion.div>
                 }
 
                 {/* empty basket */}
@@ -102,7 +103,7 @@ export default function Cart() {
                         </motion.div>
                     }
                 </AnimatePresence>
-            </div>
+            </motion.div>
 
         </motion.div>
     );
