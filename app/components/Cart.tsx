@@ -5,7 +5,7 @@ import { useCartStore } from '../store';
 import formatPrice from '@/util/PriceFormat';
 import { IoAddCircle, IoRemoveCircle } from 'react-icons/io5';
 import shoppingCart from '@/public/shopping-cart.png';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 /** Cart (component)
  *
@@ -90,12 +90,18 @@ export default function Cart() {
                 }
 
                 {/* empty basket */}
-                {!cartStore.cart.length &&
-                    <div className='flex flex-col items-center gap-12 text-2xl font-medium pt-56 opacity-50'>
-                        <h1>Your shopping cart is empty.</h1>
-                        <Image src={shoppingCart} alt='empty cart' width={200} height={200} />
-                    </div>
-                }
+                <AnimatePresence>
+                    {!cartStore.cart.length &&
+                        <motion.div
+                            animate={{ scale: 1, rotateZ: 0, opacity: .75 }}
+                            initial={{ scale: .5, rotateZ: -10, opacity: 0 }}
+                            exit={{ scale: .5, rotateZ: -10, opacity: 0 }}
+                            className='flex flex-col items-center gap-12 text-2xl font-medium pt-56 opacity-50'>
+                            <h1>Your shopping cart is empty.</h1>
+                            <Image src={shoppingCart} alt='empty cart' width={200} height={200} />
+                        </motion.div>
+                    }
+                </AnimatePresence>
             </div>
 
         </motion.div>
