@@ -38,8 +38,12 @@ export default function Cart() {
             <motion.div
                 layout
                 onClick={(e) => e.stopPropagation()} // prevents cart from closing when panel is clicked
-                className='bg-white absolute right-0 top-0 w-1/4 h-screen p-12 overflow-y-scroll text-gray-700'>
-                <h1>Here's your shopping list.</h1>
+                className='bg-white absolute right-0 top-0 w-full md:w-2/5 h-screen p-12 overflow-y-scroll text-gray-700'>
+                <button
+                    onClick={() => cartStore.toggleCart()}
+                    className='text-sm font-bold pb-12'>
+                    Back to store
+                </button>
                 {cartStore.cart.map((item) => (
                     <motion.div layout key={item.id} className="flex py-4 gap-4">
                         <Image
